@@ -4,16 +4,26 @@ public class User {
     private String name;
     private String lastname;
     private String email;
+
+    public User() {
+    }
+
+    public User(String name, String lastname, String email) {
+        this(name,lastname);
+        this.email = email;
+    }
+
+
+    public User(String lastname, String name) {
+        this.lastname = lastname;
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
-        this.name = name;
-    }
-
-    public User(String lastname, String name) {
-        this.lastname = lastname;
         this.name = name;
     }
 

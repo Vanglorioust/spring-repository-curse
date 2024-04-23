@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+</head>
+<body>
+<h1 th:text="${title}">Document</h1>
+<div th:if="${users.size() == 0}">No tiene elementos</div> <!-- If there are no users, show 'No tiene elementos' -->
+<div th:if="${users.size() > 0}"> <!-- If there are users, show the table -->
+    <table>
+        <thead> <!-- Table header -->
+        <tr>
+            <th>Nombre</th> <!-- Table column headers -->
+            <th>Apellido</th> <!-- Table column headers -->
+            <th>Email</th> <!-- Table column headers -->
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.name}">Nombre</td> <!-- Table data -->
+            <td th:text="${user.lastname}">Apellido</td>
+            <td th:if="${user.email != null}" th:text="${user.email}">Email</td>    <!-- If email is not null, show it -->
+            <td th:if="${not (user.email != null)}" th:text="${'No Email'}">No Email</td> <!-- If email is null, show 'No Email' -->
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
