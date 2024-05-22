@@ -2,8 +2,10 @@ package com.jose.curso.springboot.webapp.springbootweb.controllers;
 
 import com.jose.curso.springboot.webapp.springbootweb.models.User;
 import com.jose.curso.springboot.webapp.springbootweb.models.dto.ParamDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
+import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -30,6 +32,8 @@ public class PathVariableController {
     @Value("#{${config.valuesMap}}") // Convert the values to a map
     private Map<String,Object> valuesMap;
 
+    @Autowired
+    Environment env;
 
     @GetMapping("baz/{message}")
     public ParamDTO baz(@PathVariable String message){
@@ -61,6 +65,7 @@ public class PathVariableController {
         json.put("valuesList",valuesList);
         json.put("code",code);
         json.put("valuesMap",valuesMap);
+        json.put("Code2", env.getProperty("config.code"));
         return json;
     }
 
